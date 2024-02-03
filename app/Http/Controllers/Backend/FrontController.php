@@ -11,4 +11,5 @@ class FrontController extends Controller
     {
         return view('backend.admin.home.index');
     }
+
 }

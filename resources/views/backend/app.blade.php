@@ -141,6 +141,8 @@
       <script src="{{ asset('backend/') }}/assets/js/app.js"></script>
       <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
       {{-- Data Table Js Start --}}
 
       <script src="{{ asset('backend/') }}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
@@ -150,28 +152,80 @@
          $(document).ready(function() {
             var table = $('#datatable').DataTable({
                lengthChange: false,
+               lengthMenu: [10, 25, 50, 100],
                buttons: ['copy', 'excel', 'pdf', 'print']
             });
 
-            table.buttons().container()
-               .appendTo('#datatable_wrapper .col-md-6:eq(0)');
+            table.buttons().container().appendTo('#datatable_wrapper .col-md-6:eq(0)');
+         });
+
+         $(function() {
+            $(document).on('click', '#delete', function(e) {
+               e.preventDefault();
+               var link = $(this).attr("href");
+               Swal.fire({
+                  title: 'Are you sure?',
+                  text: "Delete This Data?",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, delete it!'
+               }).then((result) => {
+                  if (result.isConfirmed) {
+                     window.location.href = link;
+                  }
+               });
+            });
+
+            // Confirm
+            $(document).on('click', '#confirm', function(e) {
+               e.preventDefault();
+               var link = $(this).attr("href");
+               Swal.fire({
+                  title: 'Are you sure?',
+                  text: "Confirm This Data?",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes, Confirm it!'
+               }).then((result) => {
+                  if (result.isConfirmed) {
+                     window.location.href = link;
+                     Swal.fire(
+                        'Confirm!',
+                        'Your file has been Confirm.',
+                        'success'
+                     );
+                  }
+               });
+            });
          });
       </script>
       {{-- Data Table End --}}
 
       <script>
-         @if (session('toast'))
-            var toast = @json(session('toast'));
+         @if (session('update'))
+            var toast = @json(session('update'));
             toastr.options = {
-               closeButton: true, // Show close button
-               closeDuration: 300, // Time to wait before closing the notification in milliseconds
-               progressBar: true, // Show a progress bar
-               showMethod: 'slideDown', // Animation in
-               hideMethod: 'slideUp', // Animation out
+               closeButton: true,
+               closeDuration: 200,
+               progressBar: true,
+               showMethod: 'slideDown',
+               hideMethod: 'slideUp',
                background: 'linear-gradient(to right, #ff7e5f, #feb47b)',
-               // Add other options as needed
             };
             toastr[toast.type](toast.message);
+
+            Swal.fire({
+               icon: toast.type, // Use the toast type as the Swal icon
+               title: toast.type.charAt(0).toUpperCase() + toast.type.slice(1) +
+                  '!', // Capitalize the toast type for the title
+               text: toast.message,
+               timer: 5000, // Adjust the timer as needed
+               showConfirmButton: true, // Hide the confirm button
+            });
          @endif
       </script>
 

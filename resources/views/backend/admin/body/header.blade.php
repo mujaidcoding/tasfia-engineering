@@ -371,8 +371,8 @@
             <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret gap-3"
                data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                @auth
-                  <img class="user-img"
-                     src="{{ Auth::user()->photo && file_exists(public_path(Auth::user()->photo)) ? asset(Auth::user()->photo) : asset('frontend/no_image.jpg') }}"
+                  <img class="user-img bg-primary"
+                     src="{{ Auth::user()->photo && file_exists(public_path(Auth::user()->photo)) ? asset(Auth::user()->photo) : asset('backend/assets/images/icons/user.png') }}"
                      alt="user avatar">
                @endauth
 
@@ -382,12 +382,12 @@
                </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end">
-               {{-- <li><a class="dropdown-item d-flex align-items-center" href="{{ route('admin.profile') }}"><i
+               <li><a class="dropdown-item d-flex align-items-center" href="{{ route('user.profile') }}"><i
                         class="bx bx-user fs-5"></i><span>Profile</span></a>
                </li>
-               <li><a class="dropdown-item d-flex align-items-center" href="{{ route('admin.password') }}"><i
+               <li><a class="dropdown-item d-flex align-items-center" href="{{ route('user.change.password') }}"><i
                         class="bx bx-cog fs-5"></i><span>Change Password</span></a>
-               </li> --}}
+               </li>
                <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
                         class="bx bx-home-circle fs-5"></i><span>Dashboard</span></a>
                </li>
@@ -400,9 +400,9 @@
                <li>
                   <div class="dropdown-divider mb-0"></div>
                </li>
-               {{-- <li><a class="dropdown-item d-flex align-items-center" href="<!--{{ route('logout') }}-->"><i
+               <li><a class="dropdown-item d-flex align-items-center" href="{{ route('logout') }}"><i
                         class="bx bx-log-out-circle"></i><span>Logout</span></a>
-               </li> --}}
+               </li>
             </ul>
          </div>
       </nav>

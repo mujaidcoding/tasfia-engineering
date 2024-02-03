@@ -19,6 +19,7 @@ return new class () extends Migration {
             $table->string('photo')->nullable();
             $table->string('role')->default('user');
             $table->boolean('status')->default(false);
+            $table->string('last_seen');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -33,7 +33,7 @@
                   <div
                      class="col-12 col-xl-7 col-xxl-8 auth-cover-left align-items-center justify-content-center d-none d-xl-flex">
 
-                     <div class="card rounded-0 mb-0 bg-transparent shadow-none shadow-none">
+                     <div class="card rounded-0 mb-0 bg-transparent shadow-none">
                         <div class="card-body">
                            <img class="img-fluid auth-img-cover-login"
                               src="{{ asset('backend/') }}/assets/images/login-images/login-cover.svg" alt=""
@@ -52,7 +52,7 @@
                                     width="60">
                               </div>
                               <div class="mb-4 text-center">
-                                 <h5 class="">Admin Login</h5>
+                                 <h5 class="">Login</h5>
                                  <p class="mb-0">Please log in to your account</p>
                               </div>
                               <div class="form-body">
@@ -99,26 +99,12 @@
                                     <div class="col-12">
                                        <div class="text-center">
                                           <p class="mb-0">Don't have an account yet? <a
-                                                href="authentication-signup.html">Sign up here</a>
+                                                href="{{ route('register') }}">Sign up here</a>
                                           </p>
                                        </div>
                                     </div>
                                  </form>
                               </div>
-                              <div class="login-separater mb-5 text-center"> <span>OR SIGN IN WITH</span>
-                                 <hr>
-                              </div>
-                              <div class="list-inline contacts-social text-center">
-                                 <a class="list-inline-item bg-facebook rounded-3 border-0 text-white"
-                                    href="javascript:;"><i class="bx bxl-facebook"></i></a>
-                                 <a class="list-inline-item bg-twitter rounded-3 border-0 text-white"
-                                    href="javascript:;"><i class="bx bxl-twitter"></i></a>
-                                 <a class="list-inline-item bg-google rounded-3 border-0 text-white"
-                                    href="javascript:;"><i class="bx bxl-google"></i></a>
-                                 <a class="list-inline-item bg-linkedin rounded-3 border-0 text-white"
-                                    href="javascript:;"><i class="bx bxl-linkedin"></i></a>
-                              </div>
-
                            </div>
                         </div>
                      </div>

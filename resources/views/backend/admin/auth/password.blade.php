@@ -1,4 +1,4 @@
-@extends('backend.admin.admin_dashboard')
+@extends('backend.app')
 
 @section('admin')
    <div class="page-content">
@@ -25,7 +25,7 @@
                      <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
                            <img class="rounded-circle bg-primary p-1"
-                              src="{{ file_exists(public_path($profileData->photo)) ? asset($profileData->photo) : asset('frontend/no_image.jpg') }}"
+                              src="{{ $profileData->photo && file_exists(public_path($profileData->photo)) ? asset($profileData->photo) : asset('backend/assets/images/icons/user.png') }}"
                               alt="Admin" width="110">
 
                            <div class="mt-3">
@@ -33,27 +33,12 @@
                               <p class="btn btn-warning mb-1"> <i class="bx bx-crown align-middle"></i>
                                  {{ $profileData->role }}
                               </p>
-                              <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                              <button class="btn btn-primary">Follow</button>
-                              <button class="btn btn-outline-primary">Message</button>
+                              <br>
+                              <a class="btn btn-danger mt-2 px-5" id="delete"
+                                 href="{{ route('user.profile.delete', ['id' => Auth::user()->id]) }}">Delete Profile
+                              </a>
                            </div>
                         </div>
-                        <hr class="my-4" />
-                        <ul class="list-group list-group-flush">
-                           <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                              <h6 class="mb-0"><svg class="feather feather-globe icon-inline me-2"
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                    <path
-                                       d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
-                                    </path>
-                                 </svg>Website</h6>
-                              <span class="text-secondary">https://codervent.com</span>
-                           </li>
-                        </ul>
                      </div>
                   </div>
                </div>
@@ -61,7 +46,7 @@
                   <div class="card">
 
                      <form class="row g-3 needs-validation" novalidate method="post"
-                        action="{{ route('admin.password.update') }}" enctype="multipart/form-data">
+                        action="{{ route('user.password.update') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="card-body">
                            <div class="row mb-3">

@@ -12,13 +12,15 @@
    <!--navigation-->
    <ul class="metismenu" id="menu">
 
-      <li>
-         <a href="{{ route('admin.dashboard') }}">
-            <div class="parent-icon"><i class='bx bx-home-alt'></i>
-            </div>
-            <div class="menu-title">Dashboard</div>
-         </a>
-      </li>
+      @if (Auth::user()->can('a'))
+         <li>
+            <a href="{{ route('admin.dashboard') }}">
+               <div class="parent-icon"><i class='bx bx-home-alt'></i>
+               </div>
+               <div class="menu-title">Dashboard</div>
+            </a>
+         </li>
+      @endif
 
       <li class="menu-label">UI Elements</li>
 
@@ -26,14 +28,13 @@
          <a class="has-arrow" href="javascript:;">
             <div class="parent-icon"><i class='bx bx-cart'></i>
             </div>
-            <div class="menu-title">Manage Category</div>
+            <div class="menu-title">Admin</div>
          </a>
          <ul>
-            <li> <a href=""><i class='bx bx-radio-circle'></i>All Catrgory</a>
+            <li> <a href=""><i class='bx bx-radio-circle'></i>Manage All User</a>
             </li>
-            <li> <a href="ecommerce-products-details.html"><i class='bx bx-radio-circle'></i>Product
-                  Details</a>
-            </li>
+            {{-- <li> <a href="{{ route('show.user') }}"><i class='bx bx-radio-circle'></i>All User</a>
+            </li> --}}
 
          </ul>
       </li>
@@ -67,42 +68,41 @@
          </ul>
       </li>
 
-      <li class="menu-label">Charts & Maps</li>
-      <li>
-         <a class="has-arrow" href="javascript:;">
-            <div class="parent-icon"><i class="bx bx-line-chart"></i>
-            </div>
-            <div class="menu-title">Charts</div>
-         </a>
-         <ul>
-            <li> <a href="charts-apex-chart.html"><i class='bx bx-radio-circle'></i>Apex</a>
-            </li>
-            <li> <a href="charts-chartjs.html"><i class='bx bx-radio-circle'></i>Chartjs</a>
-            </li>
-            <li> <a href="charts-highcharts.html"><i class='bx bx-radio-circle'></i>Highcharts</a>
-            </li>
-         </ul>
-      </li>
-      <li>
-         <a class="has-arrow" href="javascript:;">
-            <div class="parent-icon"><i class="bx bx-map-alt"></i>
-            </div>
-            <div class="menu-title">Maps</div>
-         </a>
-         <ul>
-            <li> <a href="map-google-maps.html"><i class='bx bx-radio-circle'></i>Google Maps</a>
-            </li>
-            <li> <a href="map-vector-maps.html"><i class='bx bx-radio-circle'></i>Vector Maps</a>
-            </li>
-         </ul>
-      </li>
-      <li>
-         <a href="https://themeforest.net/user/codervent" target="_blank">
-            <div class="parent-icon"><i class="bx bx-support"></i>
-            </div>
-            <div class="menu-title">Support</div>
-         </a>
-      </li>
+      @if (Auth::user()->hasRole('super-admin'))
+         <li class="menu-label">Role & Permission</li>
+         <li>
+            <a class="has-arrow" href="javascript:;">
+               <div class="parent-icon"><i class="bx bx-lock"></i>
+               </div>
+               <div class="menu-title">Role & Permission</div>
+            </a>
+            <ul>
+               <li class="{{ request()->routeIs('smtp.settings') ? 'mm-active' : '' }}">
+                  <a href="{{ route('smtp.settings') }}"><i class='bx bx-radio-circle'></i>Manage SMTP</a>
+               </li>
+
+               <li class="{{ request()->routeIs(['add.user', 'edit.user', 'all.user']) ? 'mm-active' : '' }}">
+                  <a href="{{ route('all.user') }}"><i class='bx bx-radio-circle'></i>All Users</a>
+               </li>
+
+               <li
+                  class="{{ request()->routeIs(['all.permission', 'add.permission', 'edit.permission']) ? 'mm-active' : '' }}">
+                  <a href="{{ route('all.permission') }}"><i class='bx bx-radio-circle'></i>All Permissions</a>
+               </li>
+
+               <li class="{{ request()->routeIs(['all.roles', 'add.role', 'edit.role']) ? 'mm-active' : '' }}">
+                  <a href="{{ route('all.roles') }}"><i class='bx bx-radio-circle'></i>All Roles</a>
+               </li>
+
+               <li
+                  class="{{ request()->routeIs(['all.roles.permission', 'add.roles.permission', 'edit.roles.permission']) ? 'mm-active' : '' }}">
+                  <a href="{{ route('all.roles.permission') }}"><i class='bx bx-radio-circle'></i>Role in
+                     Permissions</a>
+               </li>
+
+            </ul>
+         </li>
+      @endif
    </ul>
    <!--end navigation-->
 </div>
