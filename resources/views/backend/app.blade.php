@@ -2,7 +2,6 @@
 <html lang="en">
 
    <head>
-
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +12,9 @@
       <link href="{{ asset('backend/') }}/assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
       <link href="{{ asset('backend/') }}/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css"
          rel="stylesheet" />
+      <link href="{{ asset('backend/assets/plugins/tagify/tagify.css') }}" rel="stylesheet">
       <link href="{{ asset('backend/') }}/assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+      <link href="{{ asset('backend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet">
       <link href="{{ asset('backend/') }}/assets/plugins/datatable/css/dataTables.bootstrap5.min.css"
          rel="stylesheet" />
       <!-- loader-->
@@ -31,6 +32,8 @@
       <link href="{{ asset('backend/') }}/assets/css/header-colors.css" rel="stylesheet" />
 
       <link href="{{ asset('backend/') }}/assets/plugins/toaster/file.css" rel="stylesheet" />
+
+      @stack('css')
 
       <title>Admin Dashboard</title>
    </head>
@@ -147,6 +150,31 @@
 
       <script src="{{ asset('backend/') }}/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
       <script src="{{ asset('backend/') }}/assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+      <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+      {{-- Input Tags Code --}}
+      <script src="{{ asset('backend/assets/plugins/input-tags/js/tagsinput.js') }}"></script>
+      <script src="{{ asset('backend/assets/plugins/tagify/tagify.js') }}"></script>
+      <script>
+         var tags = document.querySelector("#tags");
+
+         // Initialize Tagify components on the above inputs
+         new Tagify(tags);
+
+         $(document).ready(function() {
+            $('#desc').summernote({
+               placeholder: 'Input Description',
+               tabsize: 2,
+               height: 300
+            });
+         });
+      </script>
 
       <script>
          $(document).ready(function() {

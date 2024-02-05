@@ -22,9 +22,51 @@
          </li>
       @endif
 
-      <li class="menu-label">UI Elements</li>
-
+      <li class="menu-label">Menus</li>
       <li>
+         <a href="{{ route('all.services') }}">
+            <div class="parent-icon"><i class='bx bx-home-alt'></i>
+            </div>
+            <div class="menu-title">Services</div>
+         </a>
+      </li>
+      <li>
+         <a href="{{ route('all.projects') }}">
+            <div class="parent-icon"><i class='bx bx-home-alt'></i>
+            </div>
+            <div class="menu-title">Projects</div>
+         </a>
+      </li>
+      <li>
+         <a href="{{ route('all.feedbacks') }}">
+            <div class="parent-icon"><i class='bx bx-home-alt'></i>
+            </div>
+            <div class="menu-title">Testimonials</div>
+         </a>
+      </li>
+      <li>
+         <a href="{{ route('all.faqs') }}">
+            <div class="parent-icon"><i class='bx bx-home-alt'></i>
+            </div>
+            <div class="menu-title">Faqs</div>
+         </a>
+      </li>
+      <li>
+         <a class="has-arrow" href="javascript:;">
+            <div class="parent-icon"><i class='bx bx-cart'></i>
+            </div>
+            <div class="menu-title">Blogs Management</div>
+         </a>
+         <ul>
+            <li> <a href="{{ route('blog.category') }}"><i class='bx bx-radio-circle'></i>Blog Catrgorirs</a>
+            </li>
+            <li> <a href="{{ route('all.blogs') }}"><i class='bx bx-radio-circle'></i>Blogs</a>
+            </li>
+
+         </ul>
+      </li>
+
+      {{-- <li>
          <a class="has-arrow" href="javascript:;">
             <div class="parent-icon"><i class='bx bx-cart'></i>
             </div>
@@ -33,9 +75,6 @@
          <ul>
             <li> <a href=""><i class='bx bx-radio-circle'></i>Manage All User</a>
             </li>
-            {{-- <li> <a href="{{ route('show.user') }}"><i class='bx bx-radio-circle'></i>All User</a>
-            </li> --}}
-
          </ul>
       </li>
 
@@ -66,7 +105,7 @@
             <li> <a href="component-accordions.html"><i class='bx bx-radio-circle'></i>Accordions</a>
             </li>
          </ul>
-      </li>
+      </li> --}}
 
       @if (Auth::user()->hasRole('super-admin'))
          <li class="menu-label">Role & Permission</li>
